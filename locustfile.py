@@ -18,10 +18,10 @@ class ChatUser(HttpUser):
                     {
                         "user": random.choice(
                             [
-                                "What is included in my Northwind Health Plus plan that is not in standard?",
-                                "What does a Product Manager do?",
-                                "What happens in a performance review?",
-                                "Whats your whistleblower policy?",
+                                "What happens if I miss the tax filing deadline?", 
+                                "How does sales tax differ from VAT?", 
+                                "What are the tax penalties for tax evasion?",
+                                "What are the tax implications of buying or selling a home?"
                             ]
                         )
                     }
@@ -41,10 +41,10 @@ class ChatUser(HttpUser):
             json={
                 "history": [
                     {
-                        "user": "What happens in a performance review?",
-                        "bot": "During the performance review at Contoso Electronics, the supervisor will discuss the employee's performance over the past year and provide feedback on areas for improvement. They will also provide an opportunity for the employee to discuss their goals and objectives for the upcoming year. The review is a two-way dialogue between managers and employees, and employees will receive a written summary of their performance review which will include a rating of their performance, feedback, and goals and objectives for the upcoming year [employee_handbook-3.pdf].",
+                        "user": "What is the tax filing deadline?",
+                        "bot": "The respective tax return has to be filed by 31 March of the following year (a few cantons have different deadlines) in the canton where the taxpayer has been resident at the end of the respective tax period. [fedlex-data-admin-ch-eli-cc-1991-1184_1184_1184-20230101-fr-pdf-a-3-49.pdf].",
                     },
-                    {"user": "Does my plan cover eye exams?"},
+                    {"user": "What happens if I miss the tax filing deadline?"},
                 ],
                 "overrides": {
                     "retrieval_mode": "hybrid",
