@@ -226,31 +226,27 @@ async def setup_clients():
 
     # Various approaches to integrate GPT and external knowledge, most applications will use a single one of these patterns
     # or some derivative, here we include several for exploration purposes
-    current_app.config[CONFIG_ASK_APPROACHES] = {
-        "rtr": RetrieveThenReadApproach(
-            search_client,
-            OPENAI_HOST,
-            AZURE_OPENAI_CHATGPT_DEPLOYMENT,
-            OPENAI_CHATGPT_MODEL,
-            AZURE_OPENAI_EMB_DEPLOYMENT,
-            OPENAI_EMB_MODEL,
-            KB_FIELDS_SOURCEPAGE,
-            KB_FIELDS_CONTENT,
-        )
-    }
-    current_app.config[CONFIG_CHAT_APPROACHES] = {
-        "rrr": ChatReadRetrieveReadApproach(
-            search_client,
-            OPENAI_HOST,
-            AZURE_OPENAI_CHATGPT_DEPLOYMENT,
-            OPENAI_CHATGPT_MODEL,
-            AZURE_OPENAI_EMB_DEPLOYMENT,
-            OPENAI_EMB_MODEL,
-            KB_FIELDS_SOURCEPAGE,
-            KB_FIELDS_CONTENT,
-        )
-    }
+    current_app.config[CONFIG_ASK_APPROACH] = RetrieveThenReadApproach(
+        search_client,
+        OPENAI_HOST,
+        AZURE_OPENAI_CHATGPT_DEPLOYMENT,
+        OPENAI_CHATGPT_MODEL,
+        AZURE_OPENAI_EMB_DEPLOYMENT,
+        OPENAI_EMB_MODEL,
+        KB_FIELDS_SOURCEPAGE,
+        KB_FIELDS_CONTENT,
+    )
 
+    current_app.config[CONFIG_CHAT_APPROACH] = ChatReadRetrieveReadApproach(
+        search_client,
+        OPENAI_HOST,
+        AZURE_OPENAI_CHATGPT_DEPLOYMENT,
+        OPENAI_CHATGPT_MODEL,
+        AZURE_OPENAI_EMB_DEPLOYMENT,
+        OPENAI_EMB_MODEL,
+        KB_FIELDS_SOURCEPAGE,
+        KB_FIELDS_CONTENT,
+    )
 
 def create_app():
     if os.getenv("APPLICATIONINSIGHTS_CONNECTION_STRING"):
