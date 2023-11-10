@@ -26,7 +26,8 @@ const Chat = () => {
     const [shouldStream, setShouldStream] = useState<boolean>(true);
     const [useSemanticCaptions, setUseSemanticCaptions] = useState<boolean>(false);
     const [excludeCategory, setExcludeCategory] = useState<string>("");
-    const [useSuggestFollowupQuestions, setUseSuggestFollowupQuestions] = useState<boolean>(false);
+    const [includeCategory, setIncludeCategory] = useState<string>("");
+    const [useSuggestFollowupQuestions, setUseSuggestFollowupQuestions] = useState<boolean>(true);
     const [useOidSecurityFilter, setUseOidSecurityFilter] = useState<boolean>(false);
     const [useGroupsSecurityFilter, setUseGroupsSecurityFilter] = useState<boolean>(false);
 
@@ -113,6 +114,7 @@ const Chat = () => {
                     overrides: {
                         prompt_template: promptTemplate.length === 0 ? undefined : promptTemplate,
                         exclude_category: excludeCategory.length === 0 ? undefined : excludeCategory,
+                        include_category: includeCategory.length === 0 ? undefined : includeCategory,
                         top: retrieveCount,
                         retrieval_mode: retrievalMode,
                         semantic_ranker: useSemanticRanker,
@@ -187,6 +189,10 @@ const Chat = () => {
         setExcludeCategory(newValue || "");
     };
 
+    const onIncludeCategoryChanged = (_ev?: React.FormEvent, newValue?: string) => {
+        setIncludeCategory(newValue || "");
+    };
+
     const onUseSuggestFollowupQuestionsChange = (_ev?: React.FormEvent<HTMLElement | HTMLInputElement>, checked?: boolean) => {
         setUseSuggestFollowupQuestions(!!checked);
     };
@@ -235,7 +241,7 @@ const Chat = () => {
                     {!lastQuestionRef.current ? (
                         <div className={styles.chatEmptyState}>
                             <BotSparkleFilled fontSize={"120px"} primaryFill={"rgba(0, 51, 141, 1)"} aria-hidden="true" aria-label="Chat logo" />
-                            <h1 className={styles.chatEmptyStateTitle}>Chat with CBAM documentation</h1>
+                            <h1 className={styles.chatEmptyStateTitle}>Chat with your data</h1>
                             <h2 className={styles.chatEmptyStateSubtitle}>Ask anything or try an example</h2>
                             <ExampleList onExampleClicked={onExampleClicked} />
                         </div>
@@ -302,7 +308,7 @@ const Chat = () => {
                     <div className={styles.chatInput}>
                         <QuestionInput
                             clearOnSend
-                            placeholder="Type a new question (e.g. which goods are subject to CBAM?)"
+                            placeholder="Type a new question (e.g. what is the impact of natural catastrophes on insurance premiums?)"
                             disabled={isLoading}
                             onSend={question => makeApiRequest(question)}
                         />
@@ -347,6 +353,8 @@ const Chat = () => {
                         onChange={onRetrieveCountChange}
                     />
                     <TextField className={styles.chatSettingsSeparator} label="Exclude category" onChange={onExcludeCategoryChanged} />
+                    <TextField className={styles.chatSettingsSeparator} label="Include category" onChange={onIncludeCategoryChanged} />
+
                     <Checkbox
                         className={styles.chatSettingsSeparator}
                         checked={useSemanticRanker}

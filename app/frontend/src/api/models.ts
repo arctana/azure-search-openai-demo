@@ -9,6 +9,7 @@ export type ChatAppRequestOverrides = {
     semantic_ranker?: boolean;
     semantic_captions?: boolean;
     exclude_category?: string;
+    include_category?: string;
     top?: number;
     temperature?: number;
     prompt_template?: string;

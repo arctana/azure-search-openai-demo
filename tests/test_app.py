@@ -74,6 +74,7 @@ async def test_ask_rtr_text_filter(auth_client, snapshot):
                     "use_oid_security_filter": True,
                     "use_groups_security_filter": True,
                     "exclude_category": "excluded",
+                    "include_category": "included",
                 },
             },
         },
@@ -172,6 +173,7 @@ async def test_chat_text_filter(auth_client, snapshot):
                     "use_oid_security_filter": True,
                     "use_groups_security_filter": True,
                     "exclude_category": "excluded",
+                    "include_category": "included",
                 },
             },
         },
@@ -312,6 +314,7 @@ async def test_chat_stream_text_filter(auth_client, snapshot):
                     "use_oid_security_filter": True,
                     "use_groups_security_filter": True,
                     "exclude_category": "excluded",
+                    "include_category": "included",
                 }
             },
         },

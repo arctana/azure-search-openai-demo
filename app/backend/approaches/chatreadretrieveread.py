@@ -24,7 +24,7 @@ class ChatReadRetrieveReadApproach(Approach):
     top documents from search, then constructs a prompt with them, and then uses OpenAI to generate an completion
     (answer) with that prompt.
     """
-    system_message_chat_conversation = """Assistant helps individual or company representative with their questions about the Carbon Border Adjustment Mechanism (CBAM) which is a regulation pushed by the EU in the context of the EU Green Deal.
+    system_message_chat_conversation = """Assistant helps individual or company representative with their questions.
     Be brief in your answers. Answer ONLY with the facts listed in the list of sources below. If there isn't enough information below or that the information is not much relevant to the question, say you don't know.
     Do not generate answers that don't use the sources below.
     If asking a clarifying question to the user would help, ask the question. For tabular information return it as an html table.
@@ -34,12 +34,12 @@ class ChatReadRetrieveReadApproach(Approach):
 {follow_up_questions_prompt}
 {injected_prompt}
 """
-    follow_up_questions_prompt_content = """Generate three very brief follow-up questions that the user would likely ask next about their CBAM.
+    follow_up_questions_prompt_content = """Generate three very brief follow-up questions that the user would likely ask next.
 Always use double angle brackets to reference the questions.
 Try not to repeat questions that have already been asked.
 Only generate questions and do not generate any text before or after the questions, such as 'Next Questions'"""
 
-    query_prompt_template = """Below is a history of the conversation so far, and a new question asked by the user that needs to be answered by searching in a knowledge base about the Carbon Border Adjustment Mechanism (CBAM).
+    query_prompt_template = """Below is a history of the conversation so far, and a new question asked by the user that needs to be answered by searching in a knowledge base about the Tax treaty between Switzerland and France.
 Generate a search query based on the conversation and the new question.
 Do not include cited source filenames and document names e.g info.txt or doc.pdf in the search query terms.
 Do not include any text inside [] or <<>> in the search query terms.
@@ -50,8 +50,8 @@ If you cannot generate a search query, return just the number 0.
     query_prompt_few_shots = [
         {'role' : USER, 'content' : 'What is the purpose of the CBAM?' },
         {'role' : ASSISTANT, 'content' : 'Explain CBAM' },
-        {'role' : USER, 'content' : 'What goods are covered by the CBAM' },
-        {'role' : ASSISTANT, 'content' : 'Show CBAM goods' }
+        {'role' : USER, 'content' : 'What happens if I miss the tax filing deadline' },
+        {'role' : ASSISTANT, 'content' : 'Show penalties' }
     ]
 
     def __init__(

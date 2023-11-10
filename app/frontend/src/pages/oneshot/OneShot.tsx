@@ -23,6 +23,7 @@ export function Component(): JSX.Element {
     const [useSemanticRanker, setUseSemanticRanker] = useState<boolean>(true);
     const [useSemanticCaptions, setUseSemanticCaptions] = useState<boolean>(false);
     const [excludeCategory, setExcludeCategory] = useState<string>("");
+    const [includeCategory, setIncludeCategory] = useState<string>("");
     const [useOidSecurityFilter, setUseOidSecurityFilter] = useState<boolean>(false);
     const [useGroupsSecurityFilter, setUseGroupsSecurityFilter] = useState<boolean>(false);
 
@@ -61,6 +62,7 @@ export function Component(): JSX.Element {
                         prompt_template_prefix: promptTemplatePrefix.length === 0 ? undefined : promptTemplatePrefix,
                         prompt_template_suffix: promptTemplateSuffix.length === 0 ? undefined : promptTemplateSuffix,
                         exclude_category: excludeCategory.length === 0 ? undefined : excludeCategory,
+                        include_category: includeCategory.length === 0 ? undefined : includeCategory,
                         top: retrieveCount,
                         retrieval_mode: retrievalMode,
                         semantic_ranker: useSemanticRanker,
@@ -111,6 +113,10 @@ export function Component(): JSX.Element {
         setExcludeCategory(newValue || "");
     };
 
+    const onIncludeCategoryChanged = (_ev?: React.FormEvent, newValue?: string) => {
+        setIncludeCategory(newValue || "");
+    };
+
     const onExampleClicked = (example: string) => {
         makeApiRequest(example);
     };
@@ -148,7 +154,7 @@ export function Component(): JSX.Element {
                 <div className={styles.oneshotQuestionInput}>
                     <QuestionInput
                         //placeholder="Example: Are gifts subject to income tax?"
-                        placeholder="Example: What goods are subjected to CBAM?"
+                        placeholder="Example: What is the impact of natural catastrophes on insurance premiums?"
                         disabled={isLoading}
                         onSend={question => makeApiRequest(question)}
                     />
@@ -213,6 +219,7 @@ export function Component(): JSX.Element {
                     onChange={onRetrieveCountChange}
                 />
                 <TextField className={styles.oneshotSettingsSeparator} label="Exclude category" onChange={onExcludeCategoryChanged} />
+                <TextField className={styles.oneshotSettingsSeparator} label="Include category" onChange={onIncludeCategoryChanged} />
                 <Checkbox
                     className={styles.oneshotSettingsSeparator}
                     checked={useSemanticRanker}

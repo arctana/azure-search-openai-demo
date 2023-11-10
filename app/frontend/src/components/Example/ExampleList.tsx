@@ -8,12 +8,9 @@ export type ExampleModel = {
 };
 
 const EXAMPLES: ExampleModel[] = [
-    {
-        text: "What is the purpose of the CBAM?",
-        value: "What is the purpose of the CBAM?"
-    },
-    { text: "What goods are covered by the CBAM?", value: "What goods are covered by the CBAM?" },
-    { text: "How does the CBAM work?", value: "How does the CBAM work?" }
+    { text: "What are the components of StandRe?", value: "What are the components of StandRe?" },
+    { text: "What is migration risk and how does it affect credit risk?", value: "What is migration risk and how does it affect credit risk?" },
+    { text: "How should a fixed income bond be modeled in the SST?", value: "How should a fixed income bond be modeled in the SST?" }
 ];
 
 interface Props {

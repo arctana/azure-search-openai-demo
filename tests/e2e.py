@@ -113,6 +113,7 @@ def test_chat_customization(page: Page, live_server_url: str):
         assert overrides["top"] == 1
         assert overrides["prompt_template"] == "You are a cat and only talk about tuna."
         assert overrides["exclude_category"] == "dogs"
+        assert overrides["include_category"] == "cats"
         assert overrides["suggest_followup_questions"] is True
         assert overrides["use_oid_security_filter"] is False
         assert overrides["use_groups_security_filter"] is False
@@ -137,6 +138,8 @@ def test_chat_customization(page: Page, live_server_url: str):
     page.get_by_label("Retrieve this many search results:").fill("1")
     page.get_by_label("Exclude category").click()
     page.get_by_label("Exclude category").fill("dogs")
+    page.get_by_label("Include category").click()
+    page.get_by_label("Include category").fill("cats")
     page.get_by_text("Use query-contextual summaries instead of whole documents").click()
     page.get_by_text("Suggest follow-up questions").click()
     page.get_by_text("Use semantic ranker for retrieval").click()
